@@ -1,5 +1,5 @@
 = Factory
-:repo: factory
+:repo: factory-parent
 :github: https://github.com/BhuwanUpadhyay/{repo}
 :githubmaster: {github}/tree/master
 :revnumber: {project-version}
