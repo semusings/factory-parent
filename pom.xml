@@ -8,11 +8,11 @@
 	<packaging>pom</packaging>
 
 	<scm>
-		<url>https://github.com/BhuwanUpadhyay/factory</url>
-		<connection>scm:git:git://github.com/BhuwanUpadhyay/factory.git
+		<url>https://github.com/BhuwanUpadhyay/factory-parent</url>
+		<connection>scm:git:git://github.com/BhuwanUpadhyay/factory-parent.git
 		</connection>
 		<developerConnection>
-			scm:git:ssh://git@github.com/BhuwanUpadhyay/factory.git
+			scm:git:ssh://git@github.com/BhuwanUpadhyay/factory-parent.git
 		</developerConnection>
 		<tag>v1.0.0</tag>
 	</scm>
