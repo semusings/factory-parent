@@ -206,6 +206,7 @@
 						<tagNameFormat>v@{project.version}</tagNameFormat>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<releaseProfiles>releases</releaseProfiles>
+						<resume>false</resume>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -360,7 +361,7 @@
 							<configuration>
 								<serverId>sonatype</serverId>
 								<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-								<autoReleaseAfterClose>true</autoReleaseAfterClose>
+								<skipStaging>true</skipStaging>
 							</configuration>
 						</plugin>
 					</plugins>

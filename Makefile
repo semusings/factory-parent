@@ -4,7 +4,7 @@ xdocs:
 	./mvnw clean verify -U -P docs
 staging:
 	@read -p "Sonatype Password: " passwd; \
-	./mvnw -s settings.xml clean release:prepare  -Pcentral -Dresume=false -DsonatypeUser=developerbhuwan -DsonatypePassword=$${passwd}
+	./mvnw -s settings.xml clean release:prepare -DsonatypeUser=developerbhuwan -DsonatypePassword=$${passwd}
 gen-gpg:
 	gpg --full-generate-key
 export-gpg:
