@@ -204,6 +204,8 @@
 					<version>3.0.0-M1</version>
 					<configuration>
 						<tagNameFormat>v@{project.version}</tagNameFormat>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<releaseProfiles>releases</releaseProfiles>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -318,7 +320,7 @@
 			</build>
 		</profile>
 		<profile>
-			<id>central</id>
+			<id>releases</id>
 			<build>
 				<pluginManagement>
 					<plugins>
@@ -346,7 +348,15 @@
 							<groupId>org.sonatype.plugins</groupId>
 							<artifactId>nexus-staging-maven-plugin</artifactId>
 							<version>1.6.8</version>
-							<extensions>true</extensions>
+							<executions>
+								<execution>
+									<id>default-deploy</id>
+									<phase>deploy</phase>
+									<goals>
+										<goal>deploy</goal>
+									</goals>
+								</execution>
+							</executions>
 							<configuration>
 								<serverId>sonatype</serverId>
 								<nexusUrl>https://oss.sonatype.org/</nexusUrl>
