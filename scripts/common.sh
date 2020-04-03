@@ -4,21 +4,19 @@ BEFORE_CI_SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/before_ci.sh"
 # shellcheck source=scripts/before_ci.sh
 source "${BEFORE_CI_SCRIPT}"
 
+# deploy snapshot from ONLY this branch
+SNAPSHOT_BRANCH="master"
+
 # run the ITs if we have an ENV_VARS are set
 if [ "${CI_SECURE_ENV_VARS}" = true ]; then
   RUN_ITS=true
 fi
 RUN_ITS=${RUN_ITS:-false}
 
-if [ "${RUN_ITS}" = true ] && [ "${IS_RELEASE}" = true ]; then
+if [ "${RUN_ITS}" = true ] && [ ! "${IS_RELEASE}" = true ] && [ "$BRANCH" = "$SNAPSHOT_BRANCH" ]; then
   IS_GIT_RELEASE=true
 fi
 IS_GIT_RELEASE=${IS_GIT_RELEASE:-false}
-
-if [ "${IS_GIT_RELEASE}" = true ]; then
-  DEPLOY=true
-fi
-DEPLOY=${DEPLOY:-false}
 
 # all the prep is done, lets run the build!
 MVN_CMD="./mvnw -s settings.xml -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -V"
@@ -73,18 +71,14 @@ no_ci_build() {
 }
 
 # run 'mvn release:perform' if we can
-if [ "${DEPLOY}" = true ]; then
-  deploy
+if [ "${IS_GIT_RELEASE}" = true ]; then
+  release_prepare
+  release
 else
-  # else try to run the ITs if possible and run Sonar Scan
-  if [ "${IS_GIT_RELEASE}" = true ]; then
-    release_prepare
+  if [ "${RUN_ITS}" = true ]; then
+    full_build
   else
-    if [ "${RUN_ITS}" = true ]; then
-      full_build
-    else
-      # fall back to running an install and skip the ITs and SonarScan
-      no_ci_build
-    fi
+    # fall back to running an install and skip the ITs and SonarScan
+    no_ci_build
   fi
 fi
