@@ -1,3 +1,0 @@
-= Factory Parent
-
-image::https://sonarcloud.io/api/project_badges/quality_gate?project=io.github.bhuwanupadhyay%3Afactory-parent[Quality Gate]
