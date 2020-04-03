@@ -4,13 +4,6 @@ COMMON_SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
 # shellcheck source=scripts/common.sh
 source "${COMMON_SCRIPT}"
 
-release_prepare() {
-
-  echo "Preparing release"
-  ${MVN_CMD} clean release:prepare
-
-}
-
 compile() {
 
   echo "Rollback release"
@@ -21,7 +14,7 @@ compile() {
 deploy() {
 
   echo "Performing release"
-  ${MVN_CMD} clean release:perform \
+  ${MVN_CMD} clean release:prepare release:perform \
     -DsonatypeUser="${SONATYPE_USER}" \
     -DsonatypePassword="${SONATYPE_PASSWORD}"
 
@@ -56,8 +49,7 @@ no_ci_build() {
 
 # run 'mvn release:perform' if we can
 if [ "${DEPLOY}" = true ]; then
-  release_prepare
-  release
+  deploy
 else
   if [ "${RUN_ITS}" = true ]; then
     full_build
