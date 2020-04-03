@@ -28,7 +28,7 @@ full-build: ## Full build the project
 version: ## Get the current version
 	@scripts/before_ci.sh
 
-release: ## Prepare release
+release: ## Perform release
 	@read -p "Sonatype Password: " passwd; \
 	CI_SECURE_ENV_VARS=true \
 	PULL_REQUEST=false \
