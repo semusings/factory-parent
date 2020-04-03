@@ -18,7 +18,6 @@ build: ## Build the project
 full-build: ## Full build the project
 	@read -p "Sonar Login: " passwd; \
 	CI_SECURE_ENV_VARS=true \
-	PULL_REQUEST=true \
 	SONAR_ORGANIZATION=bhuwanupadhyay \
 	SONAR_HOST=https://sonarcloud.io \
 	SONAR_LOGIN=$$passwd \
@@ -30,8 +29,12 @@ version: ## Get the current version
 	@scripts/before_ci.sh
 
 release-prepare: ## Prepare release
-	export CI_SECURE_ENV_VARS=true && \
-	@scripts/common.sh
+	@read -p "Sonatype Password: " passwd; \
+	CI_SECURE_ENV_VARS=true \
+	PULL_REQUEST=true \
+	SONATYPE_USER=developerbhuwan \
+	SONATYPE_PASSWORD=$$passwd \
+	./scripts/build.sh
 
 release-rollback: ## Rollback release
 	@read -p "Sonatype Password: " passwd; \
