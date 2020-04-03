@@ -1,9 +1,8 @@
 #!/bin/bash
 
-set -e
-
+source "${COMMON_SCRIPT}"
 COMMON_SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
-# shellcheck source=src/ci/common.sh
+# shellcheck source=scripts/common.sh
 source "${COMMON_SCRIPT}"
 
 release_prepare() {

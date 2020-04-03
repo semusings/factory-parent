@@ -4,9 +4,6 @@ BEFORE_CI_SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/before_ci.sh"
 # shellcheck source=scripts/before_ci.sh
 source "${BEFORE_CI_SCRIPT}"
 
-# deploy snapshot from ONLY this branch
-SNAPSHOT_BRANCH="master"
-
 # run the ITs if we have an ENV_VARS are set
 if [ "${CI_SECURE_ENV_VARS}" = true ]; then
   RUN_ITS=true
