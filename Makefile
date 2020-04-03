@@ -36,6 +36,10 @@ release: ## Prepare release
 	SONATYPE_PASSWORD=$$passwd \
 	./scripts/build.sh
 
+rollback: ## Rollback release
+	IS_ROLLBACK=true \
+	./scripts/build.sh
+
 ##@ GPG Key
 
 gpg-generate: ## Generate new GPG key
