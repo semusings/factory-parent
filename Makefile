@@ -14,10 +14,10 @@ help:
 ##@ Development
 
 build: ## Build the project
-	./mvnw clean install -U -P sonar
+	./mvnw -s settings.xml clean install sonar:sonar -U -P sonar
 
 xdocs: ## Build the documentation
-	./mvnw clean verify -U -P docs
+	./mvnw -s settings.xml clean verify -U -P docs
 
 ##@ Releasing
 
