@@ -15,5 +15,11 @@ if [ "$BRANCH" = "$SNAPSHOT_BRANCH" ] && [ "$PULL_REQUEST" = false ] && [ "${RUN
 fi
 DEPLOY=${IS_GIT_RELEASE:-false}
 
+SONAR_BRANCH=${BRANCH}
+
+if [ "${BRANCH}" = "$SNAPSHOT_BRANCH" ]; then
+  SONAR_BRANCH=""
+fi
+
 # all the prep is done, lets run the build!
 MVN_CMD="./mvnw -s settings.xml -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -V"
