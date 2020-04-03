@@ -47,8 +47,9 @@ no_ci_build() {
   ${MVN_CMD} install -DskipITs
   echo ""
   echo "To run full_build and deploy set environments"
-  echo "Sonar Vars: SONAR_ORGANIZATION, SONAR_HOST, SONAR_LOGIN"
-  echo "Sonatype Vars: SONATYPE_USER, SONATYPE_PASSWORD"
+  echo "Common Vars: CI_SECURE_ENV_VARS"
+  echo "To build: SONAR_ORGANIZATION, SONAR_HOST, SONAR_LOGIN"
+  echo "To release: PULL_REQUEST, SONATYPE_USER, SONATYPE_PASSWORD"
   echo ""
 
 }
