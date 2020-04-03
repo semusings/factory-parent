@@ -23,6 +23,13 @@ deploy() {
 
 }
 
+rollback() {
+
+  echo "Rollback release"
+  ${MVN_CMD} clean release:rollback
+
+}
+
 full_build() {
 
   echo "Running full_build ${SONAR_BRANCH}"
@@ -51,15 +58,18 @@ no_ci_build() {
 if [ "${DEPLOY}" = true ]; then
   deploy
 else
-  if [ "${RUN_ITS}" = true ]; then
-    full_build
-  else
-    # fall back to running an install and skip the ITs and SonarScan
-    if [ "${IS_COMPILE}" = true ]; then
-      compile
+  if [ "${IS_ROLLBACK}" = true ]; then
+    rollback
+    if [ "${RUN_ITS}" = true ]; then
+      full_build
     else
       # fall back to running an install and skip the ITs and SonarScan
-      no_ci_build
+      if [ "${IS_COMPILE}" = true ]; then
+        compile
+      else
+        # fall back to running an install and skip the ITs and SonarScan
+        no_ci_build
+      fi
     fi
   fi
 fi
