@@ -1,6 +1,5 @@
 .PHONY: help
 .DEFAULT_GOAL := help
-_version := $(shell scripts/version.sh)
 
 help:
 	@echo "---------------------------------------------------------------------------------------"
@@ -22,7 +21,7 @@ xdocs: ## Build the documentation
 ##@ Releasing
 
 version: ## Get the current Academy version
-	@echo $(_version)
+	@scripts/before_ci.sh
 
 release-clean: ## Cleaning a Release
 	./mvnw -s settings.xml clean release:clean
