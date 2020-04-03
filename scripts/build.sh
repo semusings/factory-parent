@@ -12,10 +12,10 @@ release_prepare() {
 
 }
 
-release_rollback() {
+compile() {
 
   echo "Rollback release"
-  ${MVN_CMD} clean release:rollback
+  ${MVN_CMD} clean compile
 
 }
 
@@ -63,6 +63,11 @@ else
     full_build
   else
     # fall back to running an install and skip the ITs and SonarScan
-    no_ci_build
+    if [ "${IS_COMPILE}" = true ]; then
+      compile
+    else
+      # fall back to running an install and skip the ITs and SonarScan
+      no_ci_build
+    fi
   fi
 fi
