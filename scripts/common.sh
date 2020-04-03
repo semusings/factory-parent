@@ -50,7 +50,7 @@ deploy() {
 full_build() {
 
   echo "Running mvn install"
-  ${MVN_CMD} install sonar:sonar -U -P sonar \
+  ${MVN_CMD} install sonar:sonar sonar-quality-gate:check -U -P sonar \
     -DsonarOrganization="${SONAR_ORGANIZATION}" \
     -DsonarHost="${SONAR_HOST}" \
     -DsonarLogin="${SONAR_LOGIN}" \
