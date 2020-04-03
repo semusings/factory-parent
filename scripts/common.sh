@@ -13,7 +13,7 @@ RUN_ITS=${RUN_ITS:-false}
 if [ "$BRANCH" = "$SNAPSHOT_BRANCH" ] && [ "$PULL_REQUEST" = false ] && [ "${RUN_ITS}" = true ] && [ ! "${IS_RELEASE}" = true ]; then
   DEPLOY=true
 fi
-DEPLOY=${IS_GIT_RELEASE:-false}
+DEPLOY=${DEPLOY:-false}
 
 SONAR_BRANCH=${BRANCH}
 
