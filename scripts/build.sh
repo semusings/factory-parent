@@ -50,6 +50,7 @@ no_ci_build() {
   echo "Common Vars: CI_SECURE_ENV_VARS"
   echo "To build: SONAR_ORGANIZATION, SONAR_HOST, SONAR_LOGIN"
   echo "To release: PULL_REQUEST, SONATYPE_USER, SONATYPE_PASSWORD"
+  echo "To rollback release: IS_ROLLBACK"
   echo ""
 
 }
@@ -60,6 +61,7 @@ if [ "${DEPLOY}" = true ]; then
 else
   if [ "${IS_ROLLBACK}" = true ]; then
     rollback
+  else
     if [ "${RUN_ITS}" = true ]; then
       full_build
     else
