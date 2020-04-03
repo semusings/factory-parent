@@ -3,8 +3,8 @@
 	<servers>
 		<server>
 			<id>sonatype</id>
-			<username>${sonatypeUser}</username>
-			<password>${sonatypePassword}</password>
+			<username>${sonatype.user}</username>
+			<password>${sonatype.password}</password>
 		</server>
 	</servers>
 	<profiles>
@@ -20,6 +20,8 @@
 				<sonar.login>${sonarLogin}</sonar.login>
 				<sonar.branch.name>${sonarBranch}</sonar.branch.name>
 				<sonar.branch.target>${sonarBranch}</sonar.branch.target>
+				<sonatype.password>${sonatypePassword}</sonatype.password>
+				<sonatype.user>${sonatypeUser}</sonatype.user>
 			</properties>
 		</profile>
 	</profiles>

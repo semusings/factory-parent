@@ -13,28 +13,19 @@ help:
 ##@ Development
 
 build: ## Build the project
-	./mvnw -s settings.xml clean install sonar:sonar -U -P sonar
+	@scripts/common.sh no_ci_build
 
-xdocs: ## Build the documentation
-	./mvnw -s settings.xml clean verify -U -P docs
+full-build: ## Full build the project
+	@scripts/common.sh full_build
 
 ##@ Releasing
 
-version: ## Get the current Academy version
+version: ## Get the current version
 	@scripts/before_ci.sh
 
-release-clean: ## Cleaning a Release
-	./mvnw -s settings.xml clean release:clean
-
-release-rollback: ## Rollback a Release
-	./mvnw -s settings.xml clean release:rollback
-
-release-prepare: ## Preparing the Release
-	./mvnw -s settings.xml clean release:prepare
-
-release-perform: ## Performing the Release
+release: ## Release the Project
 	@read -p "Sonatype Password: " passwd; \
-	./mvnw -s settings.xml clean release:perform -DsonatypeUser=developerbhuwan -DsonatypePassword=$${passwd}
+	@scripts/common.sh deploy
 
 ##@ GPG Key
 
