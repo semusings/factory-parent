@@ -31,7 +31,7 @@ version: ## Get the current version
 release: ## Prepare release
 	@read -p "Sonatype Password: " passwd; \
 	CI_SECURE_ENV_VARS=true \
-	PULL_REQUEST=true \
+	PULL_REQUEST=false \
 	SONATYPE_USER=developerbhuwan \
 	SONATYPE_PASSWORD=$$passwd \
 	./scripts/build.sh
