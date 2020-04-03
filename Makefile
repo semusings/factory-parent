@@ -27,6 +27,9 @@ version: ## Get the current Academy version
 release-clean: ## Cleaning a Release
 	./mvnw -s settings.xml clean release:clean
 
+release-rollback: ## Rollback a Release
+	./mvnw -s settings.xml clean release:rollback
+
 release-prepare: ## Preparing the Release
 	./mvnw -s settings.xml clean release:prepare
 
