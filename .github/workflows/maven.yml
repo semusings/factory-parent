@@ -17,4 +17,9 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Maven
-        run: mvn -B package --file pom.xml -P sonar -nsu -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+        run: scripts/common.sh
+        env:
+          CI_SECURE_ENV_VARS: true
+          SONAR_ORGANIZATION: bhuwanupadhyay
+          SONAR_HOST: https://sonarcloud.io
+          SONAR_LOGIN: 09dfc74dfff8dae47a98abe8359c80311402b55e
