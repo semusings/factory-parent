@@ -8,6 +8,7 @@ on: [ push, pull_request ]
 jobs:
   compile:
     runs-on: ubuntu-latest
+    name: Compile Maven project
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
