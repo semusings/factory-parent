@@ -19,23 +19,40 @@ DEPLOY=${DEPLOY:-false}
 MVN_CMD="./mvnw -s settings.xml -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -V"
 
 deploy() {
+
   echo "Deploying build"
   ${MVN_CMD} clean release:clean
   ${MVN_CMD} clean release:prepare
-  ${MVN_CMD} release:perform -DsonatypeUser=developerbhuwan -DsonatypePassword= -Pdocs
+  ${MVN_CMD} clean release:perform \
+    -DsonatypeUser="${SONATYPE_USER}" \
+    -DsonatypePassword="${SONATYPE_PASSWORD}"
 
   # also deploy the documentation and javadocs to the site
   #  git clone -b gh-pages "https://github.com/${REPO_SLUG}.git" target/gh-pages/
+
 }
 
 full_build() {
+
   echo "Running mvn install"
-  ${MVN_CMD} install sonar:sonar -U -P sonar
+  ${MVN_CMD} install sonar:sonar -U -P sonar \
+    -DsonarOrganization="${SONAR_ORGANIZATION}" \
+    -DsonarHost="${SONAR_HOST}" \
+    -DsonarLogin="${SONAR_LOGIN}" \
+    -DsonarBranch="${BRANCH}"
+
 }
 
 no_ci_build() {
+
   echo "Skipping ITs, SonarScan likely this build is a local build"
   ${MVN_CMD} install -DskipITs
+  echo ""
+  echo "To run full_build and deploy set environments"
+  echo "Sonar Vars: SONAR_ORGANIZATION, SONAR_HOST, SONAR_LOGIN"
+  echo "Sonatype Vars: SONATYPE_USER, SONATYPE_PASSWORD"
+  echo ""
+
 }
 
 # run 'mvn release:perform' if we can
@@ -46,7 +63,7 @@ else
   if [ "${RUN_ITS}" = true ]; then
     full_build
   else
-    # fall back to running an install and skip the ITs and SonarScant
+    # fall back to running an install and skip the ITs and SonarScan
     no_ci_build
   fi
 fi
