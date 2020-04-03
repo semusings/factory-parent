@@ -1,0 +1,8 @@
+= Factory Parent
+:groupId: io.github.bhuwanupadhyay
+:repo: factory-parent
+:workflowName: Java CI with Maven
+:branch: pipeline-workflows
+
+image::https://img.shields.io/github/workflow/status/BhuwanUpadhyay/{repo}/{workflowName}/{branch}?style=for-the-badge[link="https://github.com/BhuwanUpadhyay/{repo}/actions"]
+image::https://sonarcloud.io/api/project_badges/quality_gate?project={groupId}%3A{repo}[link="https://sonarcloud.io/dashboard?id={groupId}%3A{repo}"]
