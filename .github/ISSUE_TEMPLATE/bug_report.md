@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Describe the bug**
-Please provide details of the problem, including the version of Factory that you
+Please provide details of the problem, including the version of Factory Parent that you
 are using. 
 
 **Sample**
