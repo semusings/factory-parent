@@ -38,7 +38,7 @@ full_build() {
     -DsonarOrganization="${SONAR_ORGANIZATION}" \
     -DsonarHost="${SONAR_HOST}" \
     -DsonarLogin="${SONAR_LOGIN}" \
-    -DsonarBranch="${BRANCH}"
+    -DsonarBranch="${SONAR_BRANCH}"
 
 }
 
