@@ -20,6 +20,7 @@
 				<sonar.login>${sonarLogin}</sonar.login>
 				<sonar.branch.name>${sonarBranch}</sonar.branch.name>
 				<sonar.branch.target>${sonarBranch}</sonar.branch.target>
+				<sonar-quality-gate.branch>${sonarBranch}</sonar-quality-gate.branch>
 				<sonatype.password>${sonatypePassword}</sonatype.password>
 				<sonatype.user>${sonatypeUser}</sonatype.user>
 			</properties>
