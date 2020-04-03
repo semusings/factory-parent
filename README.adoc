@@ -4,5 +4,7 @@
 :workflowName: Java CI with Maven
 :branch: pipeline-workflows
 
+[.left]
 image::https://img.shields.io/github/workflow/status/BhuwanUpadhyay/{repo}/{workflowName}/{branch}?style=for-the-badge[link="https://github.com/BhuwanUpadhyay/{repo}/actions"]
-image::https://sonarcloud.io/api/project_badges/quality_gate?project={groupId}%3A{repo}[link="https://sonarcloud.io/dashboard?id={groupId}%3A{repo}"]
+[.left]
+image::https://sonarcloud.io/api/project_badges/measure?project={groupId}%3A{repo}&metric=alert_status[link="https://sonarcloud.io/dashboard?id={groupId}%3A{repo}"]
