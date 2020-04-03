@@ -13,10 +13,10 @@ help:
 ##@ Development
 
 build: ## Build the project
-	@scripts/common.sh no_ci_build
+	@scripts/common.sh
 
 full-build: ## Full build the project
-	@scripts/common.sh full_build
+	@scripts/common.sh
 
 ##@ Releasing
 
@@ -25,7 +25,7 @@ version: ## Get the current version
 
 release: ## Release the Project
 	@read -p "Sonatype Password: " passwd; \
-	@scripts/common.sh deploy
+	@scripts/common.sh
 
 ##@ GPG Key
 
