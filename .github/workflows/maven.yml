@@ -17,7 +17,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Maven
-        run: scripts/common.sh
+        run: scripts/build.sh
         env:
           CI_SECURE_ENV_VARS: true
           SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
