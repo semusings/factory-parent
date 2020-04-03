@@ -8,7 +8,7 @@ source "${BEFORE_CI_SCRIPT}"
 MVN_CMD="./mvnw -s settings.xml -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -V"
 
 deploy() {
-  echo "Deploying SNAPSHOT build"
+  echo "Deploying build"
   ${MVN_CMD} clean release:clean
   ${MVN_CMD} clean release:prepare
   ${MVN_CMD} release:perform -DsonatypeUser=developerbhuwan -DsonatypePassword= -Pdocs
