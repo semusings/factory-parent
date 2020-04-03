@@ -23,6 +23,14 @@ full-build: ## Full build the project
 version: ## Get the current version
 	@scripts/before_ci.sh
 
+release-prepare: ## Prepare release
+	@read -p "Sonatype Password: " passwd; \
+	@scripts/common.sh
+
+release-rollback: ## Rollback release
+	@read -p "Sonatype Password: " passwd; \
+	@scripts/common.sh
+
 release: ## Release the Project
 	@read -p "Sonatype Password: " passwd; \
 	@scripts/common.sh

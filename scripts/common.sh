@@ -10,7 +10,12 @@ if [ "${CI_SECURE_ENV_VARS}" = true ]; then
 fi
 RUN_ITS=${RUN_ITS:-false}
 
-if [ "${RUN_ITS}" = true ] && [ ! "${IS_RELEASE}" = true ]; then
+if [ "${RUN_ITS}" = true ] && [ "${IS_RELEASE}" = true ]; then
+  IS_GIT_RELEASE=true
+fi
+IS_GIT_RELEASE=${IS_GIT_RELEASE:-false}
+
+if [ "${IS_GIT_RELEASE}" = true ]; then
   DEPLOY=true
 fi
 DEPLOY=${DEPLOY:-false}
@@ -18,11 +23,23 @@ DEPLOY=${DEPLOY:-false}
 # all the prep is done, lets run the build!
 MVN_CMD="./mvnw -s settings.xml -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -V"
 
+release_prepare() {
+
+  echo "Preparing release"
+  ${MVN_CMD} clean release:prepare
+
+}
+
+release_rollback() {
+
+  echo "Rollback release"
+  ${MVN_CMD} clean release:rollback
+
+}
+
 deploy() {
 
-  echo "Deploying build"
-  ${MVN_CMD} clean release:clean
-  ${MVN_CMD} clean release:prepare
+  echo "Performing release"
   ${MVN_CMD} clean release:perform \
     -DsonatypeUser="${SONATYPE_USER}" \
     -DsonatypePassword="${SONATYPE_PASSWORD}"
@@ -60,10 +77,14 @@ if [ "${DEPLOY}" = true ]; then
   deploy
 else
   # else try to run the ITs if possible and run Sonar Scan
-  if [ "${RUN_ITS}" = true ]; then
-    full_build
+  if [ "${IS_GIT_RELEASE}" = true ]; then
+    release_prepare
   else
-    # fall back to running an install and skip the ITs and SonarScan
-    no_ci_build
+    if [ "${RUN_ITS}" = true ]; then
+      full_build
+    else
+      # fall back to running an install and skip the ITs and SonarScan
+      no_ci_build
+    fi
   fi
 fi
