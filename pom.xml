@@ -138,32 +138,33 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<configuration>
-					<rules>
-						<reactorModuleConvergence>
-							<message>The reactor is not valid</message>
-							<ignoreModuleDependencies>true</ignoreModuleDependencies>
-						</reactorModuleConvergence>
-						<requireMavenVersion>
-							<version>[3.0,)</version>
-						</requireMavenVersion>
-						<dependencyConvergence/>
-						<requireReleaseDeps>
-							<message>No Snapshots Allowed!</message>
-						</requireReleaseDeps>
-						<requireJavaVersion>
-							<version>[1.8,)</version>
-						</requireJavaVersion>
-					</rules>
-					<fail>true</fail>
-				</configuration>
 				<executions>
 					<execution>
-						<id>enforce</id>
-						<phase>validate</phase>
+						<id>enforce-no-third-party-snapshots</id>
 						<goals>
 							<goal>enforce</goal>
 						</goals>
+						<configuration>
+							<rules>
+								<reactorModuleConvergence>
+									<message>
+										This rule checks that the versions within the reactor are consistent furthermore
+										it will check that every module within the project contains a parent and that
+										the parent is part of the reactor build. Furthermore it will be checked if
+										dependencies are intermodule dependencies that they using the same version as
+										given by the reactor.
+									</message>
+									<ignoreModuleDependencies>false</ignoreModuleDependencies>
+								</reactorModuleConvergence>
+								<requireReleaseDeps>
+									<message>No SNAPSHOT Allowed!</message>
+									<failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+									<excludes>
+										<exclude>io.github.bhuwanupadhyay:*</exclude>
+									</excludes>
+								</requireReleaseDeps>
+							</rules>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
