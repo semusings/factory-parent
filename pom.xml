@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.github.bhuwanupadhyay</groupId>
@@ -22,7 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<java.version>11</java.version>
-		<maven-compiler-plugin.compilerArgs />
+		<maven-compiler-plugin.compilerArgs/>
 
 		<junit.jupiter.version>5.6.0</junit.jupiter.version>
 		<spring-boot-dependencies.version>2.2.6.RELEASE</spring-boot-dependencies.version>
@@ -127,6 +128,7 @@
 						<configuration>
 							<configLocation>io/spring/javaformat/checkstyle/checkstyle.xml</configLocation>
 							<includeTestSourceDirectory>true</includeTestSourceDirectory>
+							<excludes>**/module-info.java</excludes>
 						</configuration>
 						<goals>
 							<goal>check</goal>
@@ -139,17 +141,30 @@
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>enforce-no-snapshots</id>
+						<id>enforce-no-third-party-snapshots</id>
 						<goals>
 							<goal>enforce</goal>
 						</goals>
 						<configuration>
 							<rules>
+								<reactorModuleConvergence>
+									<message>
+										This rule checks that the versions within the reactor are consistent furthermore
+										it will check that every module within the project contains a parent and that
+										the parent is part of the reactor build. Furthermore it will be checked if
+										dependencies are intermodule dependencies that they using the same version as
+										given by the reactor.
+									</message>
+									<ignoreModuleDependencies>false</ignoreModuleDependencies>
+								</reactorModuleConvergence>
 								<requireReleaseDeps>
-									<message>No Snapshots Allowed!</message>
+									<message>No SNAPSHOT Allowed!</message>
+									<failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+									<excludes>
+										<exclude>io.github.bhuwanupadhyay:*</exclude>
+									</excludes>
 								</requireReleaseDeps>
 							</rules>
-							<fail>true</fail>
 						</configuration>
 					</execution>
 				</executions>
@@ -379,6 +394,7 @@
 								<serverId>sonatype</serverId>
 								<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 								<skipStaging>true</skipStaging>
+								<autoReleaseAfterClose>true</autoReleaseAfterClose>
 							</configuration>
 						</plugin>
 					</plugins>
