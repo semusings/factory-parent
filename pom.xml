@@ -394,6 +394,7 @@
 								<serverId>sonatype</serverId>
 								<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 								<skipStaging>true</skipStaging>
+								<autoReleaseAfterClose>true</autoReleaseAfterClose>
 							</configuration>
 						</plugin>
 					</plugins>
