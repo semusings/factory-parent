@@ -4,7 +4,7 @@
 
 	<groupId>io.github.bhuwanupadhyay</groupId>
 	<artifactId>factory-parent</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<scm>
@@ -392,7 +392,6 @@
 							<configuration>
 								<serverId>sonatype</serverId>
 								<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-								<skipStaging>true</skipStaging>
 								<autoReleaseAfterClose>true</autoReleaseAfterClose>
 							</configuration>
 						</plugin>
