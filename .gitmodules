@@ -1,0 +1,4 @@
+[submodule "cicd/ci"]
+	path = cicd/ci
+	url = git@github.com:BhuwanUpadhyay/ci.git
+	branch = master
