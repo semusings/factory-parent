@@ -30,10 +30,17 @@ rollback() {
 
 }
 
+docs() {
+
+  echo "Running docs"
+  ${MVN_CMD} clean install -DskipTests -DskipITs -Pdocs
+
+}
+
 full_build() {
 
   echo "Running full_build ${SONAR_BRANCH}"
-  ${MVN_CMD} install sonar:sonar sonar-quality-gate:check -U -P sonar \
+  ${MVN_CMD} clean install sonar:sonar -U -P sonar \
     -DsonarOrganization="${SONAR_ORGANIZATION}" \
     -DsonarHost="${SONAR_HOST}" \
     -DsonarLogin="${SONAR_LOGIN}" \
@@ -51,6 +58,7 @@ no_ci_build() {
   echo "To build: SONAR_ORGANIZATION, SONAR_HOST, SONAR_LOGIN"
   echo "To release: PULL_REQUEST, SONATYPE_USER, SONATYPE_PASSWORD"
   echo "To rollback release: IS_ROLLBACK"
+  echo "To build documentation: IS_DOCS"
   echo ""
 
 }
@@ -62,15 +70,19 @@ else
   if [ "${IS_ROLLBACK}" = true ]; then
     rollback
   else
-    if [ "${RUN_ITS}" = true ]; then
-      full_build
+    if [ "$IS_DOCS" ]; then
+      docs
     else
-      # fall back to running an install and skip the ITs and SonarScan
-      if [ "${IS_COMPILE}" = true ]; then
-        compile
+      if [ "${RUN_ITS}" = true ]; then
+        full_build
       else
         # fall back to running an install and skip the ITs and SonarScan
-        no_ci_build
+        if [ "${IS_COMPILE}" = true ]; then
+          compile
+        else
+          # fall back to running an install and skip the ITs and SonarScan
+          no_ci_build
+        fi
       fi
     fi
   fi

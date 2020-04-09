@@ -12,15 +12,18 @@ help:
 
 ##@ Development
 
+docs: ## Build the project documentation
+	IS_DOCS=true \
+	./scripts/build.sh
+
 build: ## Build the project
 	@scripts/build.sh
 
 full-build: ## Full build the project
-	@read -p "Sonar Login: " passwd; \
 	CI_SECURE_ENV_VARS=true \
 	SONAR_ORGANIZATION=bhuwanupadhyay \
 	SONAR_HOST=https://sonarcloud.io \
-	SONAR_LOGIN=$$passwd \
+	SONAR_LOGIN=977cb04b9561c4f8513d592966e914b804a729b0 \
 	./scripts/build.sh
 
 ##@ Releasing
