@@ -37,6 +37,10 @@ docs() {
 
 }
 
+quality() {
+  $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/quality_gate.sh "${SONAR_HOST}" "${SONAR_LOGIN}" "${SONAR_BRANCH}"
+}
+
 full_build() {
 
   echo "Running full_build ${SONAR_BRANCH}"
@@ -46,6 +50,7 @@ full_build() {
     -DsonarLogin="${SONAR_LOGIN}" \
     -DsonarBranch="${SONAR_BRANCH}"
 
+  quality
 }
 
 no_ci_build() {
