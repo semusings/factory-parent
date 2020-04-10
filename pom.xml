@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.github.bhuwanupadhyay</groupId>
@@ -18,7 +20,9 @@
 	</scm>
 
 	<name>Factory Parent</name>
-	<description>Modules to centralize common resources and configuration for Maven builds.</description>
+	<description>Modules to centralize common resources and configuration for Maven
+		builds.
+	</description>
 	<url>https://github.com/BhuwanUpadhyay/factory-parent</url>
 
 	<organization>
@@ -43,7 +47,8 @@
 	<licenses>
 		<license>
 			<name>Apache License</name>
-			<url>https://github.com/BhuwanUpadhyay/factory-parent/blob/master/LICENSE</url>
+			<url>https://github.com/BhuwanUpadhyay/factory-parent/blob/master/LICENSE
+			</url>
 			<comments>
 				Copyright 2020 Bhuwan Prasad Upadhyay
 
@@ -67,7 +72,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<java.version>14</java.version>
-		<maven-compiler-plugin.compilerArgs />
+		<maven-compiler-plugin.compilerArgs/>
 
 		<junit.jupiter.version>5.6.0</junit.jupiter.version>
 		<spring-boot-dependencies.version>2.2.6.RELEASE</spring-boot-dependencies.version>
@@ -170,7 +175,9 @@
 						<phase>validate</phase>
 						<inherited>true</inherited>
 						<configuration>
-							<configLocation>io/spring/javaformat/checkstyle/checkstyle.xml</configLocation>
+							<configLocation>
+								io/spring/javaformat/checkstyle/checkstyle.xml
+							</configLocation>
 							<includeTestSourceDirectory>true</includeTestSourceDirectory>
 							<excludes>**/module-info.java</excludes>
 						</configuration>
@@ -193,17 +200,23 @@
 							<rules>
 								<reactorModuleConvergence>
 									<message>
-										This rule checks that the versions within the reactor are consistent furthermore
-										it will check that every module within the project contains a parent and that
-										the parent is part of the reactor build. Furthermore it will be checked if
-										dependencies are intermodule dependencies that they using the same version as
+										This rule checks that the versions within the
+										reactor are consistent furthermore
+										it will check that every module within the project
+										contains a parent and that
+										the parent is part of the reactor build.
+										Furthermore it will be checked if
+										dependencies are intermodule dependencies that
+										they using the same version as
 										given by the reactor.
 									</message>
-									<ignoreModuleDependencies>false</ignoreModuleDependencies>
+									<ignoreModuleDependencies>false
+									</ignoreModuleDependencies>
 								</reactorModuleConvergence>
 								<requireReleaseDeps>
 									<message>No SNAPSHOT Allowed!</message>
-									<failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+									<failWhenParentIsSnapshot>false
+									</failWhenParentIsSnapshot>
 									<excludes>
 										<exclude>io.github.bhuwanupadhyay:*</exclude>
 									</excludes>
@@ -378,7 +391,8 @@
 									<backend>html5</backend>
 									<doctype>book</doctype>
 									<attributes>
-										<project-version>${project.version}</project-version>
+										<project-version>${project.version}
+										</project-version>
 									</attributes>
 								</configuration>
 							</execution>
@@ -480,7 +494,8 @@
 			<distributionManagement>
 				<repository>
 					<id>sonatype</id>
-					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
+					</url>
 				</repository>
 				<snapshotRepository>
 					<id>sonatype</id>

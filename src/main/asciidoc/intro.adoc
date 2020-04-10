@@ -1,2 +1,1 @@
-
 Factory Parent is a base template project for maven.
