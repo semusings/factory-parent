@@ -76,6 +76,8 @@
 
 		<spring-boot-dependencies.version>2.2.6.RELEASE</spring-boot-dependencies.version>
 		<spring-cloud-dependencies.version>Hoxton.SR3</spring-cloud-dependencies.version>
+		<flogger.version>0.5.1</flogger.version>
+		<checker.version>3.3.0</checker.version>
 
 		<junit.jupiter.version>5.6.0</junit.jupiter.version>
 		<mockito-junit-jupiter.version>3.3.3</mockito-junit-jupiter.version>
@@ -97,6 +99,26 @@
 				<version>${spring-cloud-dependencies.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.flogger</groupId>
+				<artifactId>flogger</artifactId>
+				<version>${flogger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.checkerframework</groupId>
+				<artifactId>checker-qual</artifactId>
+				<version>${checker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.checkerframework</groupId>
+				<artifactId>checker</artifactId>
+				<version>${checker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.checkerframework</groupId>
+				<artifactId>jdk8</artifactId>
+				<version>${checker.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
