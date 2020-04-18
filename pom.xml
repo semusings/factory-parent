@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.github.bhuwanupadhyay</groupId>
@@ -70,7 +72,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<java.version>14</java.version>
-		<maven-compiler-plugin.compilerArgs />
+		<maven-compiler-plugin.compilerArgs/>
 
 		<spring-boot-dependencies.version>2.2.6.RELEASE</spring-boot-dependencies.version>
 		<spring-cloud-dependencies.version>Hoxton.SR3</spring-cloud-dependencies.version>
@@ -80,6 +82,7 @@
 		<junit.jupiter.version>5.6.0</junit.jupiter.version>
 		<mockito-junit-jupiter.version>3.3.3</mockito-junit-jupiter.version>
 		<assertj-core.version>3.10.0</assertj-core.version>
+		<testcontainers.version>1.13.0</testcontainers.version>
 	</properties>
 
 	<dependencyManagement>
@@ -117,6 +120,16 @@
 				<groupId>org.checkerframework</groupId>
 				<artifactId>jdk8</artifactId>
 				<version>${checker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>${testcontainers.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${testcontainers.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
