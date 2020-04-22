@@ -6,7 +6,7 @@
 
 	<groupId>io.github.bhuwanupadhyay</groupId>
 	<artifactId>factory-parent</artifactId>
-	<version>1.0.8-SNAPSHOT</version>
+	<version>1.0.9-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<scm>
@@ -85,7 +85,8 @@
 		<testcontainers.version>1.14.0</testcontainers.version>
 
 		<puppycrawl.checkstyle.version>8.30</puppycrawl.checkstyle.version>
-		<maven-checkstyle-plugin.configLocation>cicd/ci/checkstyle/checkstyle.xml</maven-checkstyle-plugin.configLocation>
+		<maven-checkstyle-plugin.configLocation>cicd/ci/checkstyle/checkstyle.xml
+		</maven-checkstyle-plugin.configLocation>
 	</properties>
 
 	<dependencyManagement>
@@ -165,6 +166,30 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.6.0</version>
+				<inherited>false</inherited> <!-- only execute these in the parent -->
+				<executions>
+					<execution>
+						<id>git submodule update</id>
+						<phase>validate</phase>
+						<configuration>
+							<executable>git</executable>
+							<arguments>
+								<argument>submodule</argument>
+								<argument>update</argument>
+								<argument>--init</argument>
+								<argument>--recursive</argument>
+							</arguments>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -230,7 +255,8 @@
 						<phase>validate</phase>
 						<inherited>true</inherited>
 						<configuration>
-							<configLocation>${maven-checkstyle-plugin.configLocation}</configLocation>
+							<configLocation>${maven-checkstyle-plugin.configLocation}
+							</configLocation>
 							<includeTestSourceDirectory>true</includeTestSourceDirectory>
 							<excludes>**/module-info.java</excludes>
 						</configuration>
@@ -283,6 +309,11 @@
 
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.6.0</version>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
