@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xmlns="http://maven.apache.org/POM/4.0.0"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.github.bhuwanupadhyay</groupId>
 	<artifactId>factory-parent</artifactId>
-	<version>1.0.9-SNAPSHOT</version>
+	<version>1.0.9</version>
 	<packaging>pom</packaging>
 
 	<scm>
@@ -16,7 +14,7 @@
 		<developerConnection>
 			scm:git:ssh://git@github.com/BhuwanUpadhyay/factory-parent.git
 		</developerConnection>
-		<tag>HEAD</tag>
+		<tag>v1.0.9</tag>
 	</scm>
 
 	<name>Factory Parent</name>
@@ -72,7 +70,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<java.version>14</java.version>
-		<maven-compiler-plugin.compilerArgs/>
+		<maven-compiler-plugin.compilerArgs />
 
 		<spring-boot-dependencies.version>2.2.6.RELEASE</spring-boot-dependencies.version>
 		<spring-cloud-dependencies.version>Hoxton.SR3</spring-cloud-dependencies.version>
