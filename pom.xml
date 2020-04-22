@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.github.bhuwanupadhyay</groupId>
@@ -70,7 +72,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<java.version>14</java.version>
-		<maven-compiler-plugin.compilerArgs />
+		<maven-compiler-plugin.compilerArgs/>
 
 		<spring-boot-dependencies.version>2.2.6.RELEASE</spring-boot-dependencies.version>
 		<spring-cloud-dependencies.version>Hoxton.SR3</spring-cloud-dependencies.version>
@@ -81,6 +83,9 @@
 		<mockito-junit-jupiter.version>3.3.3</mockito-junit-jupiter.version>
 		<assertj-core.version>3.10.0</assertj-core.version>
 		<testcontainers.version>1.14.0</testcontainers.version>
+
+		<puppycrawl.checkstyle.version>8.30</puppycrawl.checkstyle.version>
+		<maven-checkstyle-plugin.configLocation>cicd/ci/checkstyle/checkstyle.xml</maven-checkstyle-plugin.configLocation>
 	</properties>
 
 	<dependencyManagement>
@@ -197,23 +202,40 @@
 				<artifactId>flatten-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>io.spring.javaformat</groupId>
-				<artifactId>spring-javaformat-maven-plugin</artifactId>
+				<groupId>com.coveo</groupId>
+				<artifactId>fmt-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>format-checkstyle</id>
 						<phase>validate</phase>
 						<inherited>true</inherited>
 						<goals>
-							<goal>apply</goal>
+							<goal>format</goal>
 						</goals>
 					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${puppycrawl.checkstyle.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
 					<execution>
-						<id>validate-checkstyle</id>
+						<id>checkstyle-validation</id>
 						<phase>validate</phase>
 						<inherited>true</inherited>
+						<configuration>
+							<configLocation>${maven-checkstyle-plugin.configLocation}</configLocation>
+							<includeTestSourceDirectory>true</includeTestSourceDirectory>
+							<excludes>**/module-info.java</excludes>
+						</configuration>
 						<goals>
-							<goal>validate</goal>
+							<goal>check</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -256,14 +278,6 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>13</source>
-					<target>13</target>
-				</configuration>
 			</plugin>
 		</plugins>
 
