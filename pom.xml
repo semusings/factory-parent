@@ -166,7 +166,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<inherited>false</inherited> <!-- only execute these in the parent -->
 				<executions>
 					<execution>
 						<id>git submodule update</id>
