@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.github.bhuwanupadhyay</groupId>
@@ -70,7 +72,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<java.version>14</java.version>
-		<maven-compiler-plugin.compilerArgs />
+		<maven-compiler-plugin.compilerArgs/>
 
 		<spring-boot-dependencies.version>2.2.6.RELEASE</spring-boot-dependencies.version>
 		<spring-cloud-dependencies.version>Hoxton.SR3</spring-cloud-dependencies.version>
@@ -85,6 +87,7 @@
 		<puppycrawl.checkstyle.version>8.30</puppycrawl.checkstyle.version>
 		<maven-checkstyle-plugin.configLocation>cicd/ci/checkstyle/checkstyle.xml
 		</maven-checkstyle-plugin.configLocation>
+		<frontend-maven-plugin.nodeVersion>v12.16.1</frontend-maven-plugin.nodeVersion>
 	</properties>
 
 	<dependencyManagement>
@@ -182,6 +185,32 @@
 						<goals>
 							<goal>exec</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<configuration>
+					<nodeVersion>${frontend-maven-plugin.nodeVersion}</nodeVersion>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
