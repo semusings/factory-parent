@@ -41,3 +41,19 @@ jobs:
           SONAR_HOST: ${{ secrets.SONAR_HOST }}
           SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
           GITHUB_TOKEN: ${{ github.token }}
+
+  release:
+    name: Semantic Release
+    runs-on: ubuntu-latest
+    if: github.event.push.ref == 'refs/heads/master'
+    steps:
+      # check out repository code and setup node
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      # install dependencies and run semantic-release
+      - run: npm install -g semantic-release
+      - run: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
