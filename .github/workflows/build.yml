@@ -41,24 +41,3 @@ jobs:
           SONAR_HOST: ${{ secrets.SONAR_HOST }}
           SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
           GITHUB_TOKEN: ${{ github.token }}
-
-  release:
-    name: release
-    runs-on: ubuntu-latest
-    on:
-      push:
-        branches:
-          - master
-    steps:
-      # check out repository code and setup node
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-      # install dependencies and run semantic-release
-      - run: npm ci
-      - run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
