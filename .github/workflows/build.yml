@@ -46,7 +46,7 @@ jobs:
     needs: build
     name: Semantic Release
     runs-on: ubuntu-latest
-    if: github.event.push.ref == 'refs/heads/master'
+    if: github.ref == 'master'
     steps:
       # check out repository code and setup node
       - uses: actions/checkout@v2
