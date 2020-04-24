@@ -46,7 +46,7 @@ jobs:
     needs: build
     name: Semantic Release
     runs-on: ubuntu-latest
-    if: github.ref == 'master'
+    if: ${{ github.ref }} == 'master'
     steps:
       # check out repository code and setup node
       - uses: actions/checkout@v2
@@ -54,7 +54,7 @@ jobs:
         with:
           node-version: "12.x"
       # install dependencies and run semantic-release
-      - run: npm install -g semantic-release @semantic-release/{git,changelog}
+      - run: npm install -g semantic-release @semantic-release/{git,changelog,exec}
       - run: semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
