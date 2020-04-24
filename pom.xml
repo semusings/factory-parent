@@ -381,7 +381,7 @@
 					<configuration>
 						<tagNameFormat>v@{project.version}</tagNameFormat>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
-						<releaseProfiles>releases</releaseProfiles>
+						<releaseProfiles>relesases</releaseProfiles>
 						<resume>false</resume>
 					</configuration>
 				</plugin>
