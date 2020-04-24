@@ -43,6 +43,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
 
   release:
+    needs: build
     name: Semantic Release
     runs-on: ubuntu-latest
     if: github.event.push.ref == 'refs/heads/master'
@@ -53,7 +54,7 @@ jobs:
         with:
           node-version: "12.x"
       # install dependencies and run semantic-release
-      - run: npm install -g semantic-release
+      - run: npm install -g semantic-release @semantic-release/{git,changelog}
       - run: semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

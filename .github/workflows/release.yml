@@ -1,7 +1,0 @@
-name: Semantic Release
-on:
-  push:
-    branches:
-      - master
-
-jobs:
