@@ -30,7 +30,7 @@ jobs:
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: Publish To Central Repository
-        run: cicd/ci/build.sh
+        run: export GPG_TTY=$(tty) && cicd/ci/build.sh
         env:
           CI_SECURE_ENV_VARS: true
           PULL_REQUEST: false
