@@ -7,8 +7,8 @@
         "@semantic-release/git",
         "@semantic-release/changelog",
         ["@semantic-release/exec", {
-              "prepareCmd" : "echo '${nextRelease.version}......run your custom shell script'",
-              "publishCmd" : "echo 'Published.......run your custom shell script'"
+              "prepareCmd" : "echo 'export HAS_NEW_VERSION=true && export NEW_VERSION=${nextRelease.version} && cicd/ci/build.sh",
+              "publishCmd" : "echo 'export PULL_REQUEST=false && cicd/ci/build.sh'"
               }]
       ]
 }
