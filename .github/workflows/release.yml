@@ -19,7 +19,7 @@ jobs:
         with:
           java-version: 11
       - name: Setup up GPG Key
-        run: echo ${{ secrets.GPG_SECRET_KEYS }} | base64 --decode | gpg --import && echo ${{ secrets.GPG_OWNERTRUST }} | base64 --decode | gpg --import-ownertrust
+        run: echo "${{ secrets.GPG_SECRET_KEYS }}" | base64 --decode | gpg --import && echo "${{ secrets.GPG_OWNERTRUST }}" | base64 --decode | gpg --import-ownertrust
       - name: Maven Central Repository
         run: cicd/ci/build.sh
         env:
