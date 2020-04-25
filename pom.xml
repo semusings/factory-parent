@@ -540,7 +540,7 @@
 								</execution>
 							</executions>
 							<configuration>
-								<passphrase>${env.GPG_PASSPHRASE}</passphrase>
+								<passphrase>${gpgPassphrase}</passphrase>
 							</configuration>
 						</plugin>
 
