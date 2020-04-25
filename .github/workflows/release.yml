@@ -14,18 +14,18 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - uses: actions/cache@v1
-        with:
-          path: /home/runner/.gnupg
-          key: ${{ runner.os }}-gnupg
-          restore-keys: |
-            ${{ runner.os }}-gnupg
+#      - uses: actions/cache@v1
+#        with:
+#          path: /home/runner/.gnupg
+#          key: ${{ runner.os }}-gnupg
+#          restore-keys: |
+#            ${{ runner.os }}-gnupg
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 11
       - name: Setup up GPG Key
-        if: steps.cache-gnupg.outputs.cache-hit != 'true'
+#        if: steps.cache-gnupg.outputs.cache-hit != 'true'
         run: cicd/ci/setup-gpg.sh
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
