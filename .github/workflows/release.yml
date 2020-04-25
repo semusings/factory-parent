@@ -9,7 +9,6 @@ on: [ push ]
 jobs:
   release:
     runs-on: ubuntu-latest
-    needs: compile
     name: Publish
     steps:
       - uses: actions/checkout@v2
