@@ -20,34 +20,10 @@ jobs:
           java-version: 11
       - name: Setup up GPG Key
         run: |
-          cat >keydetails <<EOF
-              %echo Generating a basic OpenPGP key
-              Key-Type: RSA
-              Key-Length: 4096
-              Subkey-Type: RSA
-              Subkey-Length: 4096
-              Name-Real: Bhuwan Prasad Upadhyay
-              Name-Comment: A savvy java developer | cloud native and ddd practitioner | angular developer
-              Name-Email: bot.bhuwan@gmail.com
-              Expire-Date: 0
-              %no-ask-passphrase
-              %no-protection
-              %pubring .pubring.gpg
-              %secring .secring.gpg
-              # Do a commit here, so that we can later print "done" :-)
-              %commit
-              %echo done
-          EOF
-
-          gpg --verbose --batch --gen-key keydetails
-
-          # Set trust to 5 for the key so we can encrypt without prompt.
-          echo -e "5\ny\n" |  gpg --command-fd 0 --expert --edit-key user@1.com trust;
+          echo $(cat .github/workflows/GPG_SECRET_KEYS) | base64 --decode | $GPG_EXECUTABLE --import
+          echo $(cat .github/workflows/GPG_OWNERTRUST) | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
         env:
           GPG_EXECUTABLE: gpg
-          GPG_KEYNAME: ${{ secrets.GPG_KEYNAME }}
-          GPG_SECRET_KEYS: ${{ secrets.GPG_SECRET_KEYS }}
-          GPG_OWNERTRUST: ${{ secrets.GPG_OWNERTRUST }}
       - name: Maven Central Repository
         run: cicd/ci/build.sh
         env:
