@@ -20,32 +20,20 @@ jobs:
           java-version: 11
       - name: Setup up GPG Key
         run: |
-          rm -rf .gnupg
-          mkdir -m 0700 .gnupg
-          touch .gnupg/gpg.conf
-          chmod 600 .gnupg/gpg.conf
-          tail -n +4 /usr/share/gnupg/gpg-conf.skel > .gnupg/gpg.conf
-
-          cd .gnupg
-          # I removed this line since these are created if a list key is done.
-          # touch .gnupg/{pub,sec}ring.gpg
-          gpg2 --list-keys
-
-
           cat >keydetails <<EOF
               %echo Generating a basic OpenPGP key
               Key-Type: RSA
-              Key-Length: 2048
+              Key-Length: 4096
               Subkey-Type: RSA
-              Subkey-Length: 2048
-              Name-Real: User 1
-              Name-Comment: User 1
-              Name-Email: user@1.com
+              Subkey-Length: 4096
+              Name-Real: Bhuwan Prasad Upadhyay
+              Name-Comment: A savvy java developer | cloud native and ddd practitioner | angular developer
+              Name-Email: bot.bhuwan@gmail.com
               Expire-Date: 0
               %no-ask-passphrase
               %no-protection
-              %pubring pubring.kbx
-              %secring trustdb.gpg
+              %pubring .pubring.gpg
+              %secring .secring.gpg
               # Do a commit here, so that we can later print "done" :-)
               %commit
               %echo done
