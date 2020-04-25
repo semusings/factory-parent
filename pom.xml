@@ -540,6 +540,7 @@
 								</execution>
 							</executions>
 							<configuration>
+								<secretKeyring>cicd/ci/secring.gpg</secretKeyring>
 								<passphrase>${gpgPassphrase}</passphrase>
 							</configuration>
 						</plugin>
