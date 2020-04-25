@@ -36,3 +36,4 @@ jobs:
           SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
           GITHUB_TOKEN: ${{ github.token }}
           GPG_EXECUTABLE: gpg
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
