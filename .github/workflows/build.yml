@@ -1,4 +1,4 @@
-name: Java CI - Build
+name: Java CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build Maven project
+    name: Build
     steps:
       - uses: actions/checkout@v2
         with:
@@ -27,7 +27,7 @@ jobs:
 
   release:
     needs: build
-    name: Semantic Release
+    name: Release
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     steps:

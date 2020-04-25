@@ -8,7 +8,7 @@
         "@semantic-release/changelog",
         ["@semantic-release/exec", {
               "prepareCmd" : "export HAS_NEW_VERSION=true && export NEW_VERSION=${nextRelease.version} && cicd/ci/build.sh && cd cicd/ci && ./import-gpg.sh",
-              "publishCmd" : "export PULL_REQUEST=false && cicd/ci/build.sh'"
+              "publishCmd" : "export PULL_REQUEST=false && export GPG_TTY=$(tty) && cicd/ci/build.sh"
               }]
       ]
 }
