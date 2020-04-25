@@ -539,6 +539,9 @@
 									</goals>
 								</execution>
 							</executions>
+							<configuration>
+								<passphrase>${env.GPG_PASSPHRASE}</passphrase>
+							</configuration>
 						</plugin>
 
 						<!-- Deploy to Sonatype OSS Nexus -->
