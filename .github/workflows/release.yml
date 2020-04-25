@@ -22,7 +22,6 @@ jobs:
         run: |
           mkdir -p $HOME/.gnupg
           chmod 700 $HOME/.gnupg
-          cp -R cicd/ci/secring.gpg $HOME/.gnupg
           gpg --import cicd/ci/public.asc
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
