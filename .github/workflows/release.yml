@@ -3,7 +3,7 @@ name: Java CI - Publish
 on:
   push:
     tags:
-      - "**"
+    - '*'
 
 jobs:
   release:
