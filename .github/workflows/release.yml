@@ -18,13 +18,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Setup up GPG Key
-        run: |
-          mkdir -p $HOME/.gnupg
-          chmod 700 $HOME/.gnupg
-          gpg --import cicd/ci/public.asc
-        env:
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: Publish To Central Repository
         run: export GPG_TTY=$(tty) && cicd/ci/build.sh
         env:
@@ -34,5 +27,4 @@ jobs:
           SONAR_HOST: ${{ secrets.SONAR_HOST }}
           SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
           GITHUB_TOKEN: ${{ github.token }}
-          GPG_EXECUTABLE: gpg
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
