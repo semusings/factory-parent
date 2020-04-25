@@ -41,4 +41,3 @@ jobs:
       - run: semantic-release
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          HAS_NEW_VERSION: true
