@@ -24,7 +24,7 @@ jobs:
           mkdir -m 0700 .gnupg
           touch .gnupg/gpg.conf
           chmod 600 .gnupg/gpg.conf
-          tail -n +4 /usr/share/gnupg2/gpg-conf.skel > .gnupg/gpg.conf
+          tail -n +4 /usr/share/gnupg/gpg-conf.skel > .gnupg/gpg.conf
 
           cd .gnupg
           # I removed this line since these are created if a list key is done.
@@ -51,10 +51,10 @@ jobs:
               %echo done
           EOF
 
-          gpg2 --verbose --batch --gen-key keydetails
+          gpg --verbose --batch --gen-key keydetails
 
           # Set trust to 5 for the key so we can encrypt without prompt.
-          echo -e "5\ny\n" |  gpg2 --command-fd 0 --expert --edit-key user@1.com trust;
+          echo -e "5\ny\n" |  gpg --command-fd 0 --expert --edit-key user@1.com trust;
         env:
           GPG_EXECUTABLE: gpg
           GPG_KEYNAME: ${{ secrets.GPG_KEYNAME }}
