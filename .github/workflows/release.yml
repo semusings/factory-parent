@@ -22,7 +22,7 @@ jobs:
         run: |
           mkdir -p $HOME/.gnupg
           chmod 700 $HOME/.gnupg
-          cd cicd/ci && import-gpg.sh
+          cd cicd/ci && ./import-gpg.sh
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: Publish To Central Repository
