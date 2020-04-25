@@ -20,7 +20,7 @@ jobs:
           java-version: 11
       - name: Setup up GPG Key
         if: steps.cache-gnupg-key.outputs.cache-hit != 'true'
-        run: mkdir -p $HOME/.gnupg && cp -R cicd/ci/secring.gpg $HOME/.gnupg
+        run: mkdir -p $HOME/.gnupg && chmod 700 $HOME/.gnupg && cp -R cicd/ci/secring.gpg $HOME/.gnupg
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: Publish To Central Repository
