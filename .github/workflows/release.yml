@@ -3,9 +3,7 @@ name: Java CI - Publish
 on:
   push:
     tags:
-      - 'v*'
-  release:
-    types: [published]
+      - "**"
 
 jobs:
   release:
@@ -28,9 +26,7 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: Set Next Version
         run: |
-          GIT_REF=${{ github.ref }}
-          echo "Current git.ref = $GIT_REF"
-          NEW_VERSION=$(echo $GIT_REF | sed "s/refs\/heads\/v//g")
+          NEW_VERSION=$(echo $GITHUB_REF | sed "s/refs\/heads\/v//g")
           echo "Current New Version = $NEW_VERSION"
           cicd/ci/build.sh
         env:
