@@ -18,6 +18,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Setup up GPG Key
+        run: |
+          mkdir -p $HOME/.gnupg
+          chmod 700 $HOME/.gnupg
+          cd cicd/ci && import-gpg.sh
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: Publish To Central Repository
         run: export GPG_TTY=$(tty) && cicd/ci/build.sh
         env:

@@ -2,8 +2,7 @@
   "name": "factory-parent",
   "version": "1.0.0",
   "description": "Factory Parent",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BhuwanUpadhyay/factory-parent.git"
