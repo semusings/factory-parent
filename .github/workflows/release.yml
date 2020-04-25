@@ -37,7 +37,7 @@ jobs:
               %echo done
           EOF
 
-          echo $GPG_PASSPHRASE | gpg --verbose --batch --gen-key keydetails --passphrase-fd 0
+          gpg --verbose --batch --gen-key keydetails --passphrase $GPG_PASSPHRASE
 
           # Set trust to 5 for the key so we can encrypt without prompt.
           echo -e "5\ny\n" |  gpg --command-fd 0 --expert --edit-key bot.bhuwan@gmail.com trust;
