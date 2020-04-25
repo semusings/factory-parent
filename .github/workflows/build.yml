@@ -3,7 +3,7 @@ name: Java CI - Build
 on:
   push:
     branches:
-    - '*'
+      - '*'
 jobs:
   build:
     runs-on: ubuntu-latest

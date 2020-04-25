@@ -2,8 +2,8 @@ name: Java CI - Publish
 
 on:
   push:
-    tags:
-    - '*'
+    branches:
+      - 'refs/tags/*'
 
 jobs:
   release:
