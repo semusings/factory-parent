@@ -1,10 +1,9 @@
 name: Java CI - Publish
 
-on: [ push ]
-#on:
-#  push:
-#    tags:
-#      - '*'
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   release:
