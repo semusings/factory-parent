@@ -7,7 +7,7 @@
         "@semantic-release/git",
         "@semantic-release/changelog",
         ["@semantic-release/exec", {
-              "prepareCmd" : "echo '${nextRelease.version}' && HAS_NEW_VERSION=true && cicd/ci/build.sh",
+              "prepareCmd" : "echo '${nextRelease.version}' && export NEW_VERSION=${nextRelease.version} && cicd/ci/build.sh",
               "publishCmd" : "echo 'Published.......run your custom shell script'"
               }]
       ]
