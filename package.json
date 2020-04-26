@@ -1,14 +1,14 @@
 {
   "name": "factory-parent",
-  "version": "1.0.0",
+  "version": "0.0.0-snapshot",
   "description": "Factory Parent",
   "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BhuwanUpadhyay/factory-parent.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Bhuwan Prasad Upadhyay",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/BhuwanUpadhyay/factory-parent/issues"
   },
