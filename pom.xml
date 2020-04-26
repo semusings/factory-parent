@@ -169,6 +169,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
+				<inherited>false</inherited>
 				<executions>
 					<execution>
 						<id>git submodule update</id>
@@ -191,6 +192,7 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
+				<inherited>false</inherited>
 				<configuration>
 					<nodeVersion>${frontend-maven-plugin.nodeVersion}</nodeVersion>
 				</configuration>
